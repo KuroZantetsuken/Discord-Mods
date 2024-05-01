@@ -1,0 +1,19 @@
+div[class^=notAppAsidePanel__] div[class^=app_] div[class^=base] > div[class^=content__] > div[class^=sidebar] {
+    transition: width 0.4s cubic-bezier(1, 0, 0, 1.275);
+    transition-delay: 0.2s;
+    width: 48px;
+}
+div[class^=notAppAsidePanel__] div[class^=app_] div[class^=base] > div[class^=content__] div[class^=content__] > div[class^=container_] {
+    transition: width 0.4s cubic-bezier(1, 0, 0, 1.275);
+    transition-delay: 0.2s;
+    width: 60px;
+}
+div[class^=base] > div[class^=content__] > div[class^=sidebar]:hover {
+    width: 240px !important;
+}
+div[class^=base] > div[class^=content__] div[class^=content__] > div[class^=container_]:hover {
+    width: 240px !important;
+}
+[aria-label="Servers sidebar"]:hover + div[class^=base] > div[class^=content__] > div[class^=sidebar] {
+    width: 240px !important;
+}
