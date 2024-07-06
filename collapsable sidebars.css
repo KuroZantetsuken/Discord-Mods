@@ -1,19 +1,39 @@
-div[class^=notAppAsidePanel__] div[class^=app_] div[class^=base] > div[class^=content__] > div[class^=sidebar] {
-    transition: width 0.4s cubic-bezier(1, 0, 0, 1.275);
-    transition-delay: 0.2s;
+/*
+ * @name Collapsable Sidebars
+ * @author rech
+ * @authorLink https://github.com/rechington
+ * @description Collapsable sidebars
+ * @license MIT
+ * @version 1.1
+ * @invite
+ * @source https://github.com/rechington/Discord-Mods/blob/main/collapsable%20sidebars.css
+ * @donate
+*/
+
+/* Hide left sidebar */
+div[class^=base] > div[class^=content] > div[class^=sidebar] {
+    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
     width: 48px;
 }
-div[class^=notAppAsidePanel__] div[class^=app_] div[class^=base] > div[class^=content__] div[class^=content__] > div[class^=container_] {
-    transition: width 0.4s cubic-bezier(1, 0, 0, 1.275);
-    transition-delay: 0.2s;
-    width: 60px;
+/* Show left sidebar when hovered */
+div[class^=base] > div[class^=content] > div[class^=sidebar]:hover {
+    width: 240px!important;
 }
-div[class^=base] > div[class^=content__] > div[class^=sidebar]:hover {
-    width: 240px !important;
+/* Show left sidebar when server list is hovered */
+[aria-label="Servers sidebar"]:hover + div[class^=base] > div[class^=content] > div[class^=sidebar] {
+    width: 240px!important;
 }
-div[class^=base] > div[class^=content__] div[class^=content__] > div[class^=container_]:hover {
-    width: 240px !important;
+
+/* Hide right sidebar */
+div[class^=members], div[class^=container_cbd271] {
+    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
+    width: 60px!important;
+    min-width: 60px!important;
+    align-content: center;
+    flex-wrap: wrap;
 }
-[aria-label="Servers sidebar"]:hover + div[class^=base] > div[class^=content__] > div[class^=sidebar] {
-    width: 240px !important;
+/* Show right sidebar when hovered */
+div[class^=members]:hover, div[class^=container_cbd271]:hover {
+    width: 240px!important;
+    min-width: 240px!important;
 }
