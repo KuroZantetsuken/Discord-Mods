@@ -4,7 +4,7 @@
  * @authorLink https://github.com/rechington
  * @description Collapsable sidebars
  * @license MIT
- * @version 1.1
+ * @version 1.2
  * @invite
  * @source https://github.com/rechington/Discord-Mods/blob/main/collapsable%20sidebars.css
  * @donate
@@ -13,7 +13,7 @@
 /* Hide left sidebar */
 div[class^=base] > div[class^=content] > div[class^=sidebar] {
     transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
-    width: 48px;
+    width: 48px!important;
 }
 /* Show left sidebar when hovered */
 div[class^=base] > div[class^=content] > div[class^=sidebar]:hover {
@@ -25,15 +25,13 @@ div[class^=base] > div[class^=content] > div[class^=sidebar]:hover {
 }
 
 /* Hide right sidebar */
-div[class^=members], div[class^=container_cbd271] {
+.container_cbd271, .membersWrap_cbd271, .members_cbd271 {
     transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
     width: 60px!important;
     min-width: 60px!important;
-    align-content: center;
-    flex-wrap: wrap;
 }
 /* Show right sidebar when hovered */
-div[class^=members]:hover, div[class^=container_cbd271]:hover {
+.container_cbd271:hover, .membersWrap_cbd271:hover, .members_cbd271:hover {
     width: 240px!important;
     min-width: 240px!important;
 }
