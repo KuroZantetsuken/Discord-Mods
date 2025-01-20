@@ -19,7 +19,7 @@
 }
 /* Show left sidebar when hovered */
 [class^=sidebar]:hover[data-collapsed=true] [class^=sidebarList] {
-    width: 190px!important;
+    width: --custom-guild-sidebar-width;
 }
 
 /* Hide right sidebar */
