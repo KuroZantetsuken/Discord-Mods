@@ -1,0 +1,38 @@
+/*
+ * @name Collapsable Sidebars (Visual Refresh)
+ * @author rech
+ * @authorLink https://github.com/rechington
+ * @description Collapsable sidebars for Visual Refresh
+ * @license MIT
+ * @version 1.0
+ * @invite
+ * @source https://github.com/rechington/Discord-Mods/blob/main/collapsable%20sidebars%refresh.css
+ * @donate
+*/
+
+/* Hide left sidebar */
+div[class^=sidebarList] {
+    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
+    width: 2em!important;
+}
+
+/* Show left sidebar when hovered */
+div[class^=sidebarList]:hover {
+    width: 12em!important;
+}
+/* Show left sidebar when server list is hovered */
+[aria-label="Servers sidebar"]:hover + div[class^=sidebarList] {
+    width: 12em!important;
+}
+
+/* Hide right sidebar */
+div[class^=members] {
+    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
+    width: 4em!important;
+    min-width: 4em!important;
+}
+/* Show right sidebar when hovered */
+div[class^=members]:hover {
+    width: 12em!important;
+    min-width: 12em!important;
+}
