@@ -4,31 +4,92 @@
  * @authorLink https://github.com/rechington
  * @description Collapsable sidebars for Visual Refresh
  * @license MIT
- * @version 1.1
+ * @version 1.2
  * @invite
  * @source https://github.com/rechington/Discord-Mods/blob/main/collapsable_sidebars_refresh.css
  * @donate
 */
 
-/* Hide left sidebar */
-[class^=sidebarList] {
-    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
-}
-[class^=sidebarList][data-collapsed=true] {
-    width: 1px!important;
-}
-/* Show left sidebar when hovered */
-[class^=sidebar]:hover[data-collapsed=true] [class^=sidebarList] {
-    width: --custom-guild-sidebar-width;
+:root {
+    --transition-bezier: 0s ease-in-out;
+    --exit-delay: 0.25s;
+    --collapsed-channel-width: 120px;
+    --collapsed-members-width: 64px;
+    --collapsed-profile-width: 110px;
+    --expanded-channel-width: 264px;
+    --expanded-members-width: 240px;
+    --expanded-profile-width: 340px;
 }
 
-/* Hide right sidebar */
-[class^=membersWrap], [aria-label="Members"], [class^=members] {
-    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
-    width: 64px!important;
-    min-width: 64px!important;
+/* Hide channel list */
+[data-collapsed=true] [class^=sidebarList] {
+    /* set width */
+    transition-delay: var(--exit-delay);
+    --custom-guild-sidebar-width: var(--collapsed-channel-width)!important;
 }
-/* Show right sidebar when hovered */
-[class^=membersWrap]:hover, [class^=membersWrap]:hover [aria-label="Members"], [class^=members]:hover {
-    width: 240px!important;
+@container (max-width: 100px) {
+    [class^=sidebarList] * {
+        /* force show channels when small */
+        display: flex!important;
+        flex-direction: column!important;
+    }
+    [class^=name], [class^=children] {
+        /* not names and buttons tho */
+        display: none!important;
+    }
+}
+/* Show channel list when hovered */
+[class^=sidebar]:hover [class^=sidebarList] {
+    /* set width */
+    transition-delay: 0s;
+    transition: var(--transition-bezier);
+    --custom-guild-sidebar-width: var(--expanded-channel-width)!important;
+}
+
+/* Hide member list */
+[class^=membersWrap],
+[aria-label="Members"],
+[class^=members] {
+    /* set width */
+    transition-delay: var(--exit-delay);
+    width: var(--collapsed-members-width)!important;
+    min-width: var(--collapsed-members-width)!important;
+}
+/* Show member list when hovered */
+[class^=membersWrap]:hover,
+[class^=membersWrap]:hover [aria-label="Members"],
+[class^=members]:hover {
+    /* set width */
+    transition-delay: 0s;
+    transition: var(--transition-bezier);
+    width: var(--expanded-members-width)!important;
+}
+
+/* Hide user profile */
+[class^=content] > [class^=outer] {
+    /* set width */
+    transition-delay: var(--exit-delay);
+    width: var(--collapsed-profile-width)!important;
+}
+[class^=none] > [class^=body],
+[class^=none] > [class^=overlay],
+[class^=inner] > [class^=footer] {
+    /* hide profile elements */
+    transition-delay: var(--exit-delay);
+    opacity: 0!important;
+}
+/* Show user profile when hovered */
+[class^=content] > [class^=outer]:hover {
+    /* set width */
+    transition-delay: 0s;
+    transition: var(--transition-bezier);
+    width: var(--expanded-profile-width)!important;
+}
+[class^=content] > [class^=outer]:hover [class^=none] > [class^=body],
+[class^=content] > [class^=outer]:hover [class^=none] > [class^=overlay],
+[class^=content] > [class^=outer]:hover [class^=inner] > [class^=footer] {
+    /* restore profile elements */
+    transition-delay: 0s;    
+    transition: var(--transition-bezier);
+    opacity: 100!important;
 }
