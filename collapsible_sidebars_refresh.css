@@ -6,7 +6,7 @@
 */
 
 :root {
-    --transition-bezier: 0s ease-in-out;
+    --transition-bezier: 0s ease-in-out; /* modify this to add a transition, but it stutters too much for me */
     --exit-delay: 0.25s;
     --collapsed-channel-width: 120px;
     --collapsed-members-width: 64px;
