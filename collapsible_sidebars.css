@@ -19,14 +19,21 @@ div[class^=base] > div[class^=content] > div[class^=sidebar]:hover {
     width: 240px!important;
 }
 
-/* Hide right sidebar */
-.container_cbd271, .membersWrap_cbd271, .members_cbd271 {
-    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
-    width: 60px!important;
-    min-width: 60px!important;
+/* Hide member list */
+[class^=membersWrap],
+[aria-label="Members"],
+[class^=members] {
+    /* set width */
+    transition-delay: var(--exit-delay);
+    width: var(--collapsed-members-width)!important;
+    min-width: var(--collapsed-members-width)!important;
 }
-/* Show right sidebar when hovered */
-.container_cbd271:hover, .membersWrap_cbd271:hover, .members_cbd271:hover {
-    width: 240px!important;
-    min-width: 240px!important;
+/* Show member list when hovered */
+[class^=membersWrap]:hover,
+[class^=membersWrap]:hover [aria-label="Members"],
+[class^=members]:hover {
+    /* set width */
+    transition-delay: 0s;
+    transition: var(--transition-bezier);
+    width: var(--expanded-members-width)!important;
 }
