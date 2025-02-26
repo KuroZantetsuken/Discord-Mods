@@ -2,7 +2,7 @@
  * @name Collapsible Sidebars
  * @author rech
  * @description Collapsible sidebars
- * @version 1.2
+ * @version 1.3
 */
 
 /* Hide left sidebar */
@@ -24,16 +24,14 @@ div[class^=base] > div[class^=content] > div[class^=sidebar]:hover {
 [aria-label="Members"],
 [class^=members] {
     /* set width */
-    transition-delay: var(--exit-delay);
-    width: var(--collapsed-members-width)!important;
-    min-width: var(--collapsed-members-width)!important;
+    transition: width 0.2s cubic-bezier(1, 0, 0, 1.275);
+    width: 64px;
+    min-width: 64px!important;
 }
 /* Show member list when hovered */
 [class^=membersWrap]:hover,
 [class^=membersWrap]:hover [aria-label="Members"],
 [class^=members]:hover {
     /* set width */
-    transition-delay: 0s;
-    transition: var(--transition-bezier);
-    width: var(--expanded-members-width)!important;
+    width: 240px!important;
 }
