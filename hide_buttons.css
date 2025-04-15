@@ -4,12 +4,15 @@
  * @authorLink https://github.com/rechington
  * @description Collapsable sidebars
  * @license MIT
- * @version 1.0
+ * @version 1.1
  * @invite
  * @source https://github.com/rechington/Discord-Mods/blob/main/hide%20buttons.css
  * @donate
 */
 
-[aria-label="Send a gift"], [aria-label="Open GIF picker"], [aria-label="Open sticker picker"] {
+div.expression-picker-chat-input-button:has([aria-label="Open GIF picker"], [aria-label="Open sticker picker"]) {
+  display: none;
+}
+[aria-label="Send a gift"] {
     display: none;
 }
