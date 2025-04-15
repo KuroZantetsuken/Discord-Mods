@@ -1,56 +1,83 @@
 /*
  * @name Collapsible Sidebars (Visual Refresh)
  * @author rech
- * @version 1.3
+ * @version 1.4
  * @description Collapsible sidebars for Visual Refresh
 */
 
 :root {
-    --transition-bezier: 0s ease-in-out; /* modify this to add a transition, but it stutters too much for me */
-    --exit-delay: 0.25s;
-    --collapsed-channel-width: 120px;
+    --transition-bezier: 0s ease-in-out; /* modify this to add a transition */
+    --open-delay: 0s;
+    --close-delay: 0.25s;
+    --collapsed-channel-width: 101px;
     --collapsed-members-width: 64px;
     --collapsed-profile-width: 110px;
-    --expanded-channel-width: 264px;
-    --expanded-members-width: 240px;
+    --expanded-channel-width: 200px;
+    --expanded-members-width: 256px;
     --expanded-profile-width: 340px;
 }
 
 /* Hide channel list */
-[data-collapsed=true] [class^=sidebarList] {
+[class^=sidebarList] {
     /* set width */
-    transition-delay: var(--exit-delay);
-    --custom-guild-sidebar-width: var(--collapsed-channel-width)!important;
+    transition-delay: var(--close-delay);
+    width: var(--collapsed-channel-width)!important;
+}
+[class^=linkTop] {
+    /* center channel icons */
+    transition-delay: var(--close-delay);
+    margin-left: 25px!important;
+}
+[class^=container] > [class^=list] {
+    /* center voice icons */
+    transition-delay: var(--close-delay);
+    padding-left: 30px!important;
 }
 [class^=actionButtons] {
     /* hide call buttons */
-    transition-delay: var(--exit-delay);
+    transition-delay: var(--close-delay);
     height: 0px!important;
     opacity: 0!important;
 }
-@container (max-width: 100px) {
-    [class^=sidebarList] * {
-        /* force show channels when small */
-        display: flex!important;
-        flex-direction: column!important;
-    }
-    [class^=name], [class^=children] {
-        /* not names and buttons tho */
-        display: none!important;
-    }
+[class^=linkTop] > [class^=name], [class^=linkTop] > [class^=children], [class^=spine], [class^=linkBottom], [class^=voiceUser] > [class^=content] > [class^=container] {
+    /* hide channel names */
+    transition-delay: var(--close-delay);
+    opacity: 0!important;
 }
 /* Show channel list when hovered */
 [class^=sidebar]:hover [class^=sidebarList] {
     /* set width */
-    transition-delay: 0s;
+    transition-delay: var(--open-delay);
     transition: var(--transition-bezier);
-    --custom-guild-sidebar-width: var(--expanded-channel-width)!important;
+    width: var(--expanded-channel-width)!important;
+}
+[class^=sidebar]:hover [class^=linkTop] {
+    /* uncenter channel icons */
+    transition-delay: var(--open-delay);
+    transition: var(--transition-bezier);
+    margin-left: 0px!important;
+}
+[class^=sidebar]:hover [class^=container] > [class^=list] {
+    /* uncenter voice icons */
+    transition-delay: var(--open-delay);
+    transition: var(--transition-bezier);
+    padding-left: 48px!important;
 }
 [class^=sidebar]:hover [class^=actionButtons] {
     /* show call buttons */
-    transition-delay: 0s;
+    transition-delay: var(--open-delay);
     transition: var(--transition-bezier);
-    height: 40px!important;
+    height: 28px!important;
+    opacity: 1!important;
+}
+[class^=sidebar]:hover [class^=linkTop] > [class^=name],
+[class^=sidebar]:hover [class^=linkTop] > [class^=children],
+[class^=sidebar]:hover [class^=linkBottom],
+[class^=sidebar]:hover [class^=spine],
+[class^=sidebar]:hover [class^=voiceUser] > [class^=content] > [class^=container] {
+    /* show channel names */
+    transition-delay: var(--open-delay);
+    transition: var(--transition-bezier);
     opacity: 1!important;
 }
 
@@ -59,7 +86,7 @@
 [aria-label="Members"],
 [class^=members] {
     /* set width */
-    transition-delay: var(--exit-delay);
+    transition-delay: var(--close-delay);
     width: var(--collapsed-members-width)!important;
     min-width: var(--collapsed-members-width)!important;
 }
@@ -68,7 +95,7 @@
 [class^=membersWrap]:hover [aria-label="Members"],
 [class^=members]:hover {
     /* set width */
-    transition-delay: 0s;
+    transition-delay: var(--open-delay);
     transition: var(--transition-bezier);
     width: var(--expanded-members-width)!important;
 }
@@ -76,20 +103,20 @@
 /* Hide user profile */
 [class^=content] > [class^=outer] {
     /* set width */
-    transition-delay: var(--exit-delay);
+    transition-delay: var(--close-delay);
     width: var(--collapsed-profile-width)!important;
 }
 [class^=none] > [class^=body],
 [class^=none] > [class^=overlay],
 [class^=inner] > [class^=footer] {
     /* hide profile elements */
-    transition-delay: var(--exit-delay);
+    transition-delay: var(--close-delay);
     opacity: 0!important;
 }
 /* Show user profile when hovered */
 [class^=content] > [class^=outer]:hover {
     /* set width */
-    transition-delay: 0s;
+    transition-delay: var(--open-delay);
     transition: var(--transition-bezier);
     width: var(--expanded-profile-width)!important;
 }
@@ -97,7 +124,7 @@
 [class^=content] > [class^=outer]:hover [class^=none] > [class^=overlay],
 [class^=content] > [class^=outer]:hover [class^=inner] > [class^=footer] {
     /* restore profile elements */
-    transition-delay: 0s;    
+    transition-delay: var(--open-delay);
     transition: var(--transition-bezier);
-    opacity: 100!important;
+    opacity: 1!important;
 }
