@@ -1,7 +1,7 @@
 /*
  * @name Collapsible Sidebars (Visual Refresh)
  * @author rech
- * @version 1.5
+ * @version 1.6
  * @description Collapsible sidebars for Visual Refresh
 */
 
@@ -9,9 +9,11 @@
     --collapsed-channel-width: 101px;
     --collapsed-members-width: 80px;
     --collapsed-profile-width: 110px;
+    --collapsed-settings-width: 120px;
     --expanded-channel-width: 200px;
     --expanded-members-width: 256px;
     --expanded-profile-width: 340px;
+    --expanded-settings-width: 272px;
 }
 
 /* Hide channel list */
@@ -90,4 +92,16 @@
     [class^=content] > [class^=outer]:hover [class^=inner] > [class^=footer] {
         /* restore profile elements */
         opacity: 1!important;
+    }
+
+/* Hide settings panel */
+    [class^=sidebar] {
+        width: var(--collapsed-settings-width)!important;
+        max-width: var(--collapsed-settings-width)!important;
+    }
+/* Show settings panel when hovered */
+    [class^=sidebar]:hover,
+    [class^=sidebarRegion]:hover [class^=sidebar] {
+        width: var(--expanded-settings-width)!important;
+        max-width: var(--expanded-settings-width)!important;
     }
