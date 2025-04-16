@@ -1,16 +1,13 @@
 /*
  * @name Collapsible Sidebars (Visual Refresh)
  * @author rech
- * @version 1.4
+ * @version 1.5
  * @description Collapsible sidebars for Visual Refresh
 */
 
 :root {
-    --transition-bezier: 0s ease-in-out; /* modify this to add a transition */
-    --open-delay: 0s;
-    --close-delay: 0.25s;
     --collapsed-channel-width: 101px;
-    --collapsed-members-width: 64px;
+    --collapsed-members-width: 80px;
     --collapsed-profile-width: 110px;
     --expanded-channel-width: 200px;
     --expanded-members-width: 256px;
@@ -18,113 +15,79 @@
 }
 
 /* Hide channel list */
-[class^=sidebarList] {
-    /* set width */
-    transition-delay: var(--close-delay);
-    width: var(--collapsed-channel-width)!important;
-}
-[class^=linkTop] {
-    /* center channel icons */
-    transition-delay: var(--close-delay);
-    margin-left: 25px!important;
-}
-[class^=container] > [class^=list] {
-    /* center voice icons */
-    transition-delay: var(--close-delay);
-    padding-left: 30px!important;
-}
-[class^=actionButtons] {
-    /* hide call buttons */
-    transition-delay: var(--close-delay);
-    height: 0px!important;
-    opacity: 0!important;
-}
-[class^=linkTop] > [class^=name], [class^=linkTop] > [class^=children], [class^=spine], [class^=linkBottom], [class^=voiceUser] > [class^=content] > [class^=container] {
-    /* hide channel names */
-    transition-delay: var(--close-delay);
-    opacity: 0!important;
-}
+    [class^=sidebarList] {
+        /* set width */
+        width: var(--collapsed-channel-width)!important;
+    }
+    [class^=container] > [class^=list] {
+        /* center voice icons */
+        padding-left: 32px!important;
+    }
+    [class^=spine], /* thread line */
+    [class^=linkTop] > [class^=children], /* channel buttons */
+    [class^=linkTop] > [class^=name], /* channel namnes */
+    [class^=linkBottom], /* call status */
+    [class^=actionButtons], /* call buttons */
+    [class^=voiceUser] > [class^=content] > [class^=container] /* call names */
+    {
+        /* hide stuff */
+        display:none!important;
+    }
 /* Show channel list when hovered */
-[class^=sidebar]:hover [class^=sidebarList] {
-    /* set width */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    width: var(--expanded-channel-width)!important;
-}
-[class^=sidebar]:hover [class^=linkTop] {
-    /* uncenter channel icons */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    margin-left: 0px!important;
-}
-[class^=sidebar]:hover [class^=container] > [class^=list] {
-    /* uncenter voice icons */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    padding-left: 48px!important;
-}
-[class^=sidebar]:hover [class^=actionButtons] {
-    /* show call buttons */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    height: 28px!important;
-    opacity: 1!important;
-}
-[class^=sidebar]:hover [class^=linkTop] > [class^=name],
-[class^=sidebar]:hover [class^=linkTop] > [class^=children],
-[class^=sidebar]:hover [class^=linkBottom],
-[class^=sidebar]:hover [class^=spine],
-[class^=sidebar]:hover [class^=voiceUser] > [class^=content] > [class^=container] {
-    /* show channel names */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    opacity: 1!important;
-}
+    [class^=sidebar]:hover [class^=sidebarList] {
+        /* revert width */
+        width: var(--expanded-channel-width)!important;
+    }
+    [class^=sidebar]:hover [class^=container] > [class^=list] {
+        /* revert voice icons */
+        padding-left: 48px!important;
+    }
+    [class^=sidebar]:hover [class^=spine], /* thread line */
+    [class^=sidebar]:hover [class^=linkTop] > [class^=children], /* channel buttons */
+    [class^=sidebar]:hover [class^=linkTop] > [class^=name], /* channel namnes */
+    [class^=sidebar]:hover [class^=linkBottom], /* call status */
+    [class^=sidebar]:hover [class^=actionButtons], /* call buttons */
+    [class^=sidebar]:hover [class^=voiceUser] > [class^=content] > [class^=container] /* call names */
+    {
+        /* revert stuff */
+        display: flex!important;
+    }
 
 /* Hide member list */
-[class^=membersWrap],
-[aria-label="Members"],
-[class^=members] {
-    /* set width */
-    transition-delay: var(--close-delay);
-    width: var(--collapsed-members-width)!important;
-    min-width: var(--collapsed-members-width)!important;
-}
+    [class^=membersWrap],
+    [aria-label="Members"],
+    [class^=members] {
+        /* set width */
+        width: var(--collapsed-members-width)!important;
+        min-width: var(--collapsed-members-width)!important;
+    }
 /* Show member list when hovered */
-[class^=membersWrap]:hover,
-[class^=membersWrap]:hover [aria-label="Members"],
-[class^=members]:hover {
-    /* set width */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    width: var(--expanded-members-width)!important;
-}
+    [class^=membersWrap]:hover,
+    [class^=membersWrap]:hover [aria-label="Members"],
+    [class^=members]:hover {
+        /* set width */
+        width: var(--expanded-members-width)!important;
+    }
 
 /* Hide user profile */
-[class^=content] > [class^=outer] {
-    /* set width */
-    transition-delay: var(--close-delay);
-    width: var(--collapsed-profile-width)!important;
-}
-[class^=none] > [class^=body],
-[class^=none] > [class^=overlay],
-[class^=inner] > [class^=footer] {
-    /* hide profile elements */
-    transition-delay: var(--close-delay);
-    opacity: 0!important;
-}
+    [class^=content] > [class^=outer] {
+        /* set width */
+        width: var(--collapsed-profile-width)!important;
+    }
+    [class^=none] > [class^=body],
+    [class^=none] > [class^=overlay],
+    [class^=inner] > [class^=footer] {
+        /* hide profile elements */
+        opacity: 0!important;
+    }
 /* Show user profile when hovered */
-[class^=content] > [class^=outer]:hover {
-    /* set width */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    width: var(--expanded-profile-width)!important;
-}
-[class^=content] > [class^=outer]:hover [class^=none] > [class^=body],
-[class^=content] > [class^=outer]:hover [class^=none] > [class^=overlay],
-[class^=content] > [class^=outer]:hover [class^=inner] > [class^=footer] {
-    /* restore profile elements */
-    transition-delay: var(--open-delay);
-    transition: var(--transition-bezier);
-    opacity: 1!important;
-}
+    [class^=content] > [class^=outer]:hover {
+        /* set width */
+        width: var(--expanded-profile-width)!important;
+    }
+    [class^=content] > [class^=outer]:hover [class^=none] > [class^=body],
+    [class^=content] > [class^=outer]:hover [class^=none] > [class^=overlay],
+    [class^=content] > [class^=outer]:hover [class^=inner] > [class^=footer] {
+        /* restore profile elements */
+        opacity: 1!important;
+    }
