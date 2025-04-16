@@ -1,7 +1,7 @@
 /*
  * @name Collapsible Sidebars (Visual Refresh)
  * @author rech
- * @version 1.6
+ * @version 1.6.1
  * @description Collapsible sidebars for Visual Refresh
 */
 
@@ -95,13 +95,14 @@
     }
 
 /* Hide settings panel */
-    [class^=sidebar] {
+    [class^=standardSidebarView] > [class^=sidebarRegion], 
+    [class^=standardSidebarView] > [class^=sidebarRegion] > [class^=sidebarRegion] > [class^=sidebar] {
         width: var(--collapsed-settings-width)!important;
         max-width: var(--collapsed-settings-width)!important;
     }
 /* Show settings panel when hovered */
-    [class^=sidebar]:hover,
-    [class^=sidebarRegion]:hover [class^=sidebar] {
+    [class^=standardSidebarView] > [class^=sidebarRegion]:hover,
+    [class^=standardSidebarView] > [class^=sidebarRegion]:hover [class^=sidebar] {
         width: var(--expanded-settings-width)!important;
         max-width: var(--expanded-settings-width)!important;
     }
