@@ -1,0 +1,73 @@
+{
+	"name": "OLED",
+	"description": "OLED blacks for Dark theme",
+	"version": "1.0",
+	"authors": [
+			{
+					"name": "Kuro",
+					"id": "77106595514822656"
+			}
+	],
+	"semanticColors": {
+			"CHAT_BACKGROUND": [
+					"#000000"
+			],
+			"BACKGROUND_FLOATING": [
+					"#000000"
+			],
+			"SCROLLBAR_AUTO_TRACK": [
+					"#000"
+			],
+			"REDESIGN_ACTIVITY_CARD_BACKGROUND": [
+					"#000000"
+			],
+			"BACKGROUND_NESTED_FLOATING": [
+					"#000000"
+			],
+			"BACKGROUND_MOBILE_PRIMARY": [
+					"#000000"
+			],
+			"BACKGROUND_MODIFIER_SELECTED": [
+					"#000000"
+			],
+			"BACKGROUND_PRIMARY": [
+					"#000000"
+			],
+			"BACKGROUND_SECONDARY": [
+					"#000000"
+			],
+			"BACKGROUND_SECONDARY_ALT": [
+					"#000000"
+			],
+			"BG_BASE_PRIMARY": [
+					"#000000"
+			],
+			"BG_BASE_SECONDARY": [
+					"#000000"
+			],
+			"BG_BASE_TERTIARY": [
+					"#000000"
+			],
+			"BG_BACKDROP":[
+				"#00000066"
+			],
+			"HOME_BACKGROUND": [
+					"#000000"
+			],
+			"BORDER_SUBTLE": [
+					"#000000"
+			],
+			"KEYBOARD": [
+					"#000000"
+			],
+			"PANEL_BG": [
+				"#000000"
+			]
+	},
+	"rawColors": {
+			"PLUM_18": "#000000",
+			"PLUM_20": "#000000",
+			"PRIMARY_645": "#000000"
+	},
+	"spec": 2
+}
