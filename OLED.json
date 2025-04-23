@@ -1,6 +1,6 @@
 {
 	"name": "OLED",
-	"description": "OLED blacks for Dark theme",
+	"description": "#000000",
 	"version": "1.0",
 	"authors": [
 			{
@@ -10,11 +10,8 @@
 	],
 	"semanticColors": {
 			"CHAT_BACKGROUND": [
-					"#FF0000"
+					"#000000"
 			],
-      			"BACKGROUND_ACCENT": [
-          				"#131318"
-      			],
 			"BACKGROUND_FLOATING": [
 					"#000000"
 			],
