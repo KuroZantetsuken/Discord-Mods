@@ -12,6 +12,9 @@
 			"CHAT_BACKGROUND": [
 					"#000000"
 			],
+      			"BACKGROUND_ACCENT": [
+          				"#131318"
+      			],
 			"BACKGROUND_FLOATING": [
 					"#000000"
 			],
