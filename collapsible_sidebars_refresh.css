@@ -29,7 +29,7 @@
     [class^=linkTop] > [class^=children], /* channel buttons */
     [class^=linkTop] > [class^=name], /* channel namnes */
     [class^=linkBottom], /* call status */
-    [class^=actionButtons], /* call buttons */
+    [class^=actionButtons]:not(:has(> [class^=jumpButton])), /* call buttons, excluding the 'jump to message' button for pinned messages */
     [class^=voiceUser] > [class^=content] > [class^=container] /* call names */
     {
         /* hide stuff */
@@ -48,7 +48,7 @@
     [class^=sidebar]:hover [class^=linkTop] > [class^=children], /* channel buttons */
     [class^=sidebar]:hover [class^=linkTop] > [class^=name], /* channel namnes */
     [class^=sidebar]:hover [class^=linkBottom], /* call status */
-    [class^=sidebar]:hover [class^=actionButtons], /* call buttons */
+    [class^=sidebar]:hover [class^=actionButtons]:not(:has(> [class^=jumpButton])), /* call buttons, excluding the 'jump to message' button for pinned messages */
     [class^=sidebar]:hover [class^=voiceUser] > [class^=content] > [class^=container] /* call names */
     {
         /* revert stuff */
