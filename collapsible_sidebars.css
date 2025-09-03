@@ -1,7 +1,7 @@
 /**
  * @name         Collapsible Sidebars
  * @author       Kuro
- * @version      2.0.0
+ * @version      2.0.1
  * @description  Makes the Channel, Member, and Settings sidebars collapsible on hover.
  */
 
@@ -129,8 +129,12 @@
     [class^=membersWrap]:hover [aria-label="Members"],
     [class^=members]:hover,
     [class^=members]:hover [class^=membersWrap],
-    [class^=members]:hover [aria-label="Members"] {
+    [class^=members]:hover [aria-label="Members"],
+    [aria-label="Members"]:hover [class^=membersWrap],
+    [aria-label="Members"]:hover [class^=members],
+    [aria-label="Members"]:hover {
       width: var(--expanded-members-width) !important;
+      min-width: var(--expanded-members-width) !important;
       z-index: 1;
     }
 
@@ -152,7 +156,9 @@
 
     /* Keep main chat portion centered */
     [class^=app]:has([class^=membersWrap]:hover) [class^=chatContent],
-    [class^=app]:has([class^=members]:hover) [class^=chatContent] {
+    [class^=app]:has([class^=members]:hover) [class^=chatContent],
+    [class^=app]:has([class^=membersWrap]:hover) [class^=container] > [class^=grid],
+    [class^=app]:has([class^=members]:hover) [class^=container] > [class^=grid] {
       margin-right: calc(var(--collapsed-members-width) - var(--expanded-members-width));
       width: calc(100% + var(--expanded-members-width) - var(--collapsed-members-width));
       z-index: 0 !important;
