@@ -1,0 +1,184 @@
+/**
+ * @name         Collapsible Sidebars
+ * @author       Kuro
+ * @version      2.0.0
+ * @description  Makes the Channel, Member, and Settings sidebars collapsible on hover.
+ */
+
+:root {
+  --collapsed-channel-width: 101px; /* Must be > 100px */
+  --expanded-channel-width: 200px;
+
+  --collapsed-members-width: 80px;
+  --expanded-members-width: 256px;
+
+  --collapsed-settings-width: 120px;
+  --expanded-settings-width: 272px;
+}
+
+/* Apply collapsible logic only below this value */
+@media (max-width: 1024px) {
+
+/*
+  Channel List Sidebar
+*/
+
+  /*
+    Collapsed State
+  */
+
+    /* Set the collapsed width of the channel list */
+    [class^=sidebarList] {
+      width: var(--collapsed-channel-width) !important;
+    }
+
+    /* Center voice channel icons when the sidebar is collapsed */
+    [class^=container] > [class^=list] {
+      padding-left: 32px !important;
+    }
+
+    /* Hide various text elements and buttons within the collapsed channel list */
+    :is(
+        [class^=spine], /* Thread indicator lines */
+        [class^=linkTop] > [class^=children], /* Channel action buttons (e.g., invite, settings) */
+        [class^=linkTop] > [class^=name], /* Channel names */
+        [class^=linkBottom], /* Call status text */
+        [class^=actionButtons]:not(:has(> [class^=jumpButton])), /* Call control buttons */
+        [class^=voiceUser] > [class^=content] > [class^=container] /* Names of users in voice */
+      ) {
+      display: none !important;
+    }
+
+  /*
+    Expanded State
+  */
+
+    /* On hover, expand the channel list to its full width */
+    [class^=sidebar]:hover [class^=sidebarList] {
+      width: var(--expanded-channel-width) !important;
+      z-index: 1;
+    }
+
+    /* Adjust voice icon padding for the expanded view */
+    [class^=sidebar]:hover [class^=container] > [class^=list] {
+      padding-left: 48px !important;
+    }
+
+    /* Reveal the previously hidden elements when the sidebar is hovered */
+    [class^=sidebar]:hover :is(
+        [class^=spine],
+        [class^=linkTop] > [class^=children],
+        [class^=linkTop] > [class^=name],
+        [class^=linkBottom],
+        [class^=actionButtons]:not(:has(> [class^=jumpButton])),
+        [class^=voiceUser] > [class^=content] > [class^=container]
+      ) {
+      display: flex !important;
+    }
+
+    /* Keep main chat portion centered */
+    [class^=sidebar]:hover + [class^=page] {
+      margin-left: calc(-1 * var(--expanded-channel-width) + var(--collapsed-channel-width));
+      width: calc(100% + var(--expanded-channel-width) - var(--collapsed-channel-width));
+      z-index: 0 !important;
+      mask-image: linear-gradient(white, white), linear-gradient(black, black);
+      mask-composite: exclude;
+      mask-size: auto, calc(var(--expanded-channel-width) - var(--collapsed-channel-width)) 100%;
+      mask-position: top left;
+      mask-repeat: no-repeat;
+    }
+
+/*
+  Member List Sidebar
+*/
+
+  /*
+    Collapsed State
+  */
+
+    /* Set the collapsed width of the member list container */
+    [aria-label="Members"],
+    [class^=membersWrap],
+    [class^=members] {
+      width: var(--collapsed-members-width) !important;
+      min-width: var(--collapsed-members-width) !important;
+    }
+
+    /* Center users */
+    [aria-label="Members"] > [class^=member] {
+      left: 8px;
+    }
+
+    /* Move nameplates to look nicer */
+    [class*="nameplated"] [class^=container] {
+      left: -16px !important;
+    }
+
+    /* Hide textual components */
+    [class^=memberInner] > [class^=content] {
+      visibility: hidden !important;
+    }
+
+  /*
+    Expanded State
+  */
+
+    /* On hover, expand the member list to its full width */
+    [class^=membersWrap]:hover,
+    [class^=membersWrap]:hover [class^=members],
+    [class^=membersWrap]:hover [aria-label="Members"],
+    [class^=members]:hover,
+    [class^=members]:hover [class^=membersWrap],
+    [class^=members]:hover [aria-label="Members"] {
+      width: var(--expanded-members-width) !important;
+      z-index: 1;
+    }
+
+    /* On hover, show textual components */
+    [class^=membersWrap]:hover [class^=memberInner] > [class^=content],
+    [class^=membersWrap]:hover [aria-label="Members"] [class^=memberInner] > [class^=content],
+    [class^=members]:hover [class^=memberInner] > [class^=content],
+    [class^=members]:hover [aria-label="Members"] [class^=memberInner] > [class^=content] {
+      visibility: visible !important;
+    }
+
+    /* On hover, reset users and nameplates */
+    [class^=membersWrap]:hover [class*="nameplated"] [class^=container],
+    [class^=membersWrap]:hover [aria-label="Members"] > [class^=member],
+    [class^=members]:hover [class*="nameplated"] [class^=container],
+    [class^=members]:hover [aria-label="Members"] > [class^=member] {
+      left: 0px !important;
+    }
+
+    /* Keep main chat portion centered */
+    [class^=app]:has([class^=membersWrap]:hover) [class^=chatContent],
+    [class^=app]:has([class^=members]:hover) [class^=chatContent] {
+      margin-right: calc(var(--collapsed-members-width) - var(--expanded-members-width));
+      width: calc(100% + var(--expanded-members-width) - var(--collapsed-members-width));
+      z-index: 0 !important;
+      mask-image: linear-gradient(white, white), linear-gradient(black, black);
+      mask-composite: exclude;
+      mask-size: auto, calc(var(--expanded-members-width) - var(--collapsed-members-width)) 100%;
+      mask-position: top right;
+      mask-repeat: no-repeat;
+    }
+
+/*
+  Settings Sidebar
+  Rudimentary just so you can somewhat navigate
+*/
+
+  /* Set the collapsed width of the settings navigation sidebar */
+  [class^=standardSidebarView] > [class^=sidebarRegion],
+  [class^=standardSidebarView] > [class^=sidebarRegion] > [class^=sidebarRegion] > [class^=sidebar] {
+    width: var(--collapsed-settings-width) !important;
+    max-width: var(--collapsed-settings-width) !important;
+  }
+
+  /* On hover, expand the settings sidebar to its full width */
+  [class^=standardSidebarView] > [class^=sidebarRegion]:hover,
+  [class^=standardSidebarView] > [class^=sidebarRegion]:hover [class^=sidebar] {
+    width: var(--expanded-settings-width) !important;
+    max-width: var(--expanded-settings-width) !important;
+  }
+}
