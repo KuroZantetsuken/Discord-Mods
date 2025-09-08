@@ -1,19 +1,19 @@
 /**
  * @name         Collapsible Sidebars
  * @author       Kuro
- * @version      2.0.1
+ * @version      2.0.2
  * @description  Makes the Channel, Member, and Settings sidebars collapsible on hover.
  */
 
 :root {
-  --collapsed-channel-width: 101px; /* Must be > 100px */
-  --expanded-channel-width: 200px;
+    --collapsed-channel-width: 101px; /* Must be > 100px */
+    --expanded-channel-width: 200px;
 
-  --collapsed-members-width: 80px;
-  --expanded-members-width: 256px;
+    --collapsed-members-width: 80px;
+    --expanded-members-width: 256px;
 
-  --collapsed-settings-width: 120px;
-  --expanded-settings-width: 272px;
+    --collapsed-settings-width: 120px;
+    --expanded-settings-width: 272px;
 }
 
 /* Apply collapsible logic only below this value */
@@ -29,24 +29,24 @@
 
     /* Set the collapsed width of the channel list */
     [class^=sidebarList] {
-      width: var(--collapsed-channel-width) !important;
+        width: var(--collapsed-channel-width) !important;
     }
 
     /* Center voice channel icons when the sidebar is collapsed */
     [class^=container] > [class^=list] {
-      padding-left: 32px !important;
+        padding-left: 32px !important;
     }
 
     /* Hide various text elements and buttons within the collapsed channel list */
     :is(
-        [class^=spine], /* Thread indicator lines */
-        [class^=linkTop] > [class^=children], /* Channel action buttons (e.g., invite, settings) */
-        [class^=linkTop] > [class^=name], /* Channel names */
-        [class^=linkBottom], /* Call status text */
-        [class^=actionButtons]:not(:has(> [class^=jumpButton])), /* Call control buttons */
-        [class^=voiceUser] > [class^=content] > [class^=container] /* Names of users in voice */
-      ) {
-      display: none !important;
+            [class^=spine], /* Thread indicator lines */
+            [class^=linkTop] > [class^=children], /* Channel action buttons (e.g., invite, settings) */
+            [class^=linkTop] > [class^=name], /* Channel names */
+            [class^=linkBottom], /* Call status text */
+            [class^=actionButtons]:not(:has(> [class^=jumpButton])), /* Call control buttons */
+            [class^=voiceUser] > [class^=content] > [class^=container] /* Names of users in voice */
+        ) {
+        display: none !important;
     }
 
   /*
@@ -55,13 +55,13 @@
 
     /* On hover, expand the channel list to its full width */
     [class^=sidebar]:hover [class^=sidebarList] {
-      width: var(--expanded-channel-width) !important;
-      z-index: 1;
+        width: var(--expanded-channel-width) !important;
+        z-index: 1 !important;
     }
 
     /* Adjust voice icon padding for the expanded view */
     [class^=sidebar]:hover [class^=container] > [class^=list] {
-      padding-left: 48px !important;
+        padding-left: 48px !important;
     }
 
     /* Reveal the previously hidden elements when the sidebar is hovered */
@@ -72,20 +72,21 @@
         [class^=linkBottom],
         [class^=actionButtons]:not(:has(> [class^=jumpButton])),
         [class^=voiceUser] > [class^=content] > [class^=container]
-      ) {
-      display: flex !important;
+        ) {
+        display: flex !important;
     }
 
     /* Keep main chat portion centered */
     [class^=sidebar]:hover + [class^=page] {
-      margin-left: calc(-1 * var(--expanded-channel-width) + var(--collapsed-channel-width));
-      width: calc(100% + var(--expanded-channel-width) - var(--collapsed-channel-width));
-      z-index: 0 !important;
-      mask-image: linear-gradient(white, white), linear-gradient(black, black);
-      mask-composite: exclude;
-      mask-size: auto, calc(var(--expanded-channel-width) - var(--collapsed-channel-width)) 100%;
-      mask-position: top left;
-      mask-repeat: no-repeat;
+        --translate-distance: calc(var(--expanded-channel-width) - var(--collapsed-channel-width)) !important;
+        margin-left: calc(-1 * var(--translate-distance)) !important;
+        width: calc(100% + var(--translate-distance)) !important;
+        z-index: 0 !important;        
+        mask-image: linear-gradient(white, white), linear-gradient(black, black) !important;
+        mask-composite: exclude !important;
+        mask-size: auto, var(--translate-distance) 100% !important;
+        mask-position: top left !important;
+        mask-repeat: no-repeat !important;
     }
 
 /*
@@ -100,23 +101,23 @@
     [aria-label="Members"],
     [class^=membersWrap],
     [class^=members] {
-      width: var(--collapsed-members-width) !important;
-      min-width: var(--collapsed-members-width) !important;
+        width: var(--collapsed-members-width) !important;
+        min-width: var(--collapsed-members-width) !important;
     }
 
     /* Center users */
     [aria-label="Members"] > [class^=member] {
-      left: 8px;
+        left: 8px !important;
     }
 
     /* Move nameplates to look nicer */
     [class*="nameplated"] [class^=container] {
-      left: -16px !important;
+        left: -16px !important;
     }
 
     /* Hide textual components */
     [class^=memberInner] > [class^=content] {
-      visibility: hidden !important;
+        visibility: hidden !important;
     }
 
   /*
@@ -133,9 +134,9 @@
     [aria-label="Members"]:hover [class^=membersWrap],
     [aria-label="Members"]:hover [class^=members],
     [aria-label="Members"]:hover {
-      width: var(--expanded-members-width) !important;
-      min-width: var(--expanded-members-width) !important;
-      z-index: 1;
+        width: var(--expanded-members-width) !important;
+        min-width: var(--expanded-members-width) !important;
+        z-index: 1 !important;
     }
 
     /* On hover, show textual components */
@@ -143,7 +144,7 @@
     [class^=membersWrap]:hover [aria-label="Members"] [class^=memberInner] > [class^=content],
     [class^=members]:hover [class^=memberInner] > [class^=content],
     [class^=members]:hover [aria-label="Members"] [class^=memberInner] > [class^=content] {
-      visibility: visible !important;
+        visibility: visible !important;
     }
 
     /* On hover, reset users and nameplates */
@@ -151,22 +152,23 @@
     [class^=membersWrap]:hover [aria-label="Members"] > [class^=member],
     [class^=members]:hover [class*="nameplated"] [class^=container],
     [class^=members]:hover [aria-label="Members"] > [class^=member] {
-      left: 0px !important;
+        left: 0px !important;
     }
 
     /* Keep main chat portion centered */
-    [class^=app]:has([class^=membersWrap]:hover) [class^=chatContent],
-    [class^=app]:has([class^=members]:hover) [class^=chatContent],
-    [class^=app]:has([class^=membersWrap]:hover) [class^=container] > [class^=grid],
-    [class^=app]:has([class^=members]:hover) [class^=container] > [class^=grid] {
-      margin-right: calc(var(--collapsed-members-width) - var(--expanded-members-width));
-      width: calc(100% + var(--expanded-members-width) - var(--collapsed-members-width));
-      z-index: 0 !important;
-      mask-image: linear-gradient(white, white), linear-gradient(black, black);
-      mask-composite: exclude;
-      mask-size: auto, calc(var(--expanded-members-width) - var(--collapsed-members-width)) 100%;
-      mask-position: top right;
-      mask-repeat: no-repeat;
+    [class^="page"]:hover [class^="chatContent"] {
+        --translate-distance: calc(var(--collapsed-members-width) - var(--expanded-members-width)) !important;
+        margin-right: var(--translate-distance) !important;
+        z-index: 0 !important;
+        mask-image: linear-gradient(white, white), linear-gradient(black, black) !important;
+        mask-composite: exclude !important;
+        mask-size: auto, calc(var(--translate-distance)) 100% !important;
+        mask-position: top right !important;
+        mask-repeat: no-repeat !important;
+    }
+
+    [class^="page"]:hover [class^="chatContent"]:hover {
+        margin-right: 0!important;
     }
 
 /*
@@ -174,17 +176,17 @@
   Rudimentary just so you can somewhat navigate
 */
 
-  /* Set the collapsed width of the settings navigation sidebar */
-  [class^=standardSidebarView] > [class^=sidebarRegion],
-  [class^=standardSidebarView] > [class^=sidebarRegion] > [class^=sidebarRegion] > [class^=sidebar] {
-    width: var(--collapsed-settings-width) !important;
-    max-width: var(--collapsed-settings-width) !important;
-  }
+    /* Set the collapsed width of the settings navigation sidebar */
+    [class^=standardSidebarView] > [class^=sidebarRegion],
+    [class^=standardSidebarView] > [class^=sidebarRegion] > [class^=sidebarRegion] > [class^=sidebar] {
+        width: var(--collapsed-settings-width) !important;
+        max-width: var(--collapsed-settings-width) !important;
+    }
 
-  /* On hover, expand the settings sidebar to its full width */
-  [class^=standardSidebarView] > [class^=sidebarRegion]:hover,
-  [class^=standardSidebarView] > [class^=sidebarRegion]:hover [class^=sidebar] {
-    width: var(--expanded-settings-width) !important;
-    max-width: var(--expanded-settings-width) !important;
-  }
+    /* On hover, expand the settings sidebar to its full width */
+    [class^=standardSidebarView] > [class^=sidebarRegion]:hover,
+    [class^=standardSidebarView] > [class^=sidebarRegion]:hover [class^=sidebar] {
+        width: var(--expanded-settings-width) !important;
+        max-width: var(--expanded-settings-width) !important;
+    }
 }
