@@ -162,13 +162,15 @@
         z-index: 0 !important;
         mask-image: linear-gradient(white, white), linear-gradient(black, black) !important;
         mask-composite: exclude !important;
-        mask-size: auto, calc(var(--translate-distance)) 100% !important;
+        mask-size: auto, calc(-1 * var(--translate-distance)) 100% !important;
         mask-position: top right !important;
         mask-repeat: no-repeat !important;
     }
 
-    [class^="page"]:hover [class^="chatContent"]:hover {
-        margin-right: 0!important;
+    [class^="page"] [class^="chatContent"]:hover,
+    [class^="page"] [class^="subtitleContainer"]:hover ~ [class^="content"] [class^="chatContent"] {
+        margin-right: 0 !important;
+        mask-image: none !important;
     }
 
 /*
